@@ -10,7 +10,6 @@
 #include <SDL2pp/SDLImage.hh>
 #include <SDL2pp/Window.hh>
 #include <SDL2pp/Renderer.hh>
-#include <SDL2pp/Texture.hh>
 #include <SDL2pp/Surface.hh>
 #include <SDL2pp/Exception.hh>
 #include <SDL2pp/Point.hh>
@@ -44,9 +43,6 @@ int main(int argc, char *argv[])
         SDL2pp::Window window("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
 
         SDL2pp::Renderer renderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-        std::string imagePath = dataPath + "hello.png";
-
-        SDL2pp::Texture texture(renderer, imagePath);
 
         std::vector<SDL2pp::Point> mouse_positions;
         bool mouse_left_pressed = false;

@@ -1,6 +1,4 @@
 ########################### GTEST
-# Enable ExternalProject CMake module
-INCLUDE(ExternalProject)
 
 # Add gtest
 # http://stackoverflow.com/questions/9689183/cmake-googletest
@@ -8,11 +6,6 @@ ExternalProject_Add(
     googletest
     URL http://googletest.googlecode.com/files/gtest-1.6.0.zip
     # TIMEOUT 10
-    # # Force separate output paths for debug and release builds to allow easy
-    # # identification of correct lib in subsequent TARGET_LINK_LIBRARIES commands
-    # CMAKE_ARGS -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG:PATH=DebugLibs
-    #            -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE:PATH=ReleaseLibs
-    #            -Dgtest_force_shared_crt=ON
     CMAKE_ARGS -DBUILD_SHARED_LIBS=TRUE
     # Disable install step
     INSTALL_COMMAND "")
