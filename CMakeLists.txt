@@ -21,6 +21,20 @@ target_include_directories(neural_network PUBLIC
     ${EIGEN3_INCLUDE_DIR})
 #target_link_libraries(neural_network)
 
+add_library(gesture_management
+    gesture_management/gesture_storage.cpp
+    gesture_management/sampling.cpp
+    ${UTIL_SRC_LIST})
+target_include_directories(gesture_management PUBLIC
+    ${SDL2PP_INCLUDE_DIRS}
+    ${EIGEN3_INCLUDE_DIR}
+    ${YAML_CPP_INCLUDE_DIR}
+    ./gesture_management
+    ./util)
+target_link_libraries(gesture_management PUBLIC
+    ${SDL2PP_LIBRARIES}
+    ${YAML_CPP_LIBRARIES})
+
 # gesture recorder
 add_executable(gesture_recorder apps/gesture_recorder.cpp ${UTIL_SRC_LIST})
 target_include_directories(gesture_recorder PUBLIC
@@ -28,7 +42,7 @@ target_include_directories(gesture_recorder PUBLIC
     ${EIGEN3_INCLUDE_DIR}
     ${YAML_CPP_INCLUDE_DIR}
     ./util)
-target_link_libraries(gesture_recorder ${SDL2PP_LIBRARIES} ${YAML_CPP_LIBRARIES})
+target_link_libraries(gesture_recorder ${SDL2PP_LIBRARIES} ${YAML_CPP_LIBRARIES} uuid)
 message(STATUS " ${SDL2PP_LIBRARIES}")
 add_dependencies(gesture_recorder Eigen3)
 

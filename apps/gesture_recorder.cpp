@@ -22,14 +22,8 @@ std::vector<Eigen::Matrix2Xi> recorded_gestures;
 
 void add_gesture(const std::vector<SDL2pp::Point>& gesture)
 {
-    recorded_gestures.push_back(Eigen::Matrix2Xi{2, gesture.size()});
-    auto& mat = recorded_gestures.back();
-    for(int i = 0; i < static_cast<int>(gesture.size()); i++)
-    {
-        const SDL2pp::Point& point = gesture[i];
-        mat(0, i) = point.GetX();
-        mat(1, i) = point.GetY();
-    }
+    Eigen::Map<const Eigen::Matrix2Xi> m(&gesture[0].x, 2, gesture.size());
+    recorded_gestures.push_back(m);
 }
 
 int main(int argc, char *argv[])
@@ -99,13 +93,6 @@ int main(int argc, char *argv[])
         std::cerr << "Error in: " << e.GetSDLFunction() << std::endl;
         std::cerr << "  Reason: " << e.GetSDLError() << std::endl;
     }
-
-    YAML::Node node;
-    node = recorded_gestures;
-
-    YAML::Emitter out;
-    out << node;
-    std::cout << out.c_str() << std::endl;
 
     return 0;
 }

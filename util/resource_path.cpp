@@ -10,7 +10,7 @@
 
 #include <SDL.h>
 
-std::string util::getResourcePath(const std::string &subDir)
+std::string util::getResourcePath()
 {
     const char PATH_SEP = '/';
 
@@ -39,5 +39,5 @@ std::string util::getResourcePath(const std::string &subDir)
     //If we want a specific subdirectory path in the resource directory
     //append it to the base path. This would be something like Lessons/res/Lesson0
 //    return subDir.empty() ? baseRes : baseRes + subDir + PATH_SEP;
-    return baseRes + subDir + PATH_SEP;
+    return baseRes;
 }

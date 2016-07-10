@@ -14,6 +14,6 @@ namespace util
 /*
  * Get the resource path for resources
  */
-std::string getResourcePath(const std::string &subDir = "");
+std::string getResourcePath();
 
 }
